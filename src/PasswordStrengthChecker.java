@@ -5,14 +5,12 @@ public class PasswordStrengthChecker {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Step 1: Take User ID
         System.out.print("Enter User ID: ");
         String userId = sc.nextLine();
 
         String password;
         boolean isStrong = false;
 
-        // Keep asking until strong password is entered
         do {
             System.out.print("Enter Password: ");
             password = sc.nextLine();
@@ -24,21 +22,18 @@ public class PasswordStrengthChecker {
 
     public static boolean checkPasswordStrength(String userId, String password) {
 
-        // 1. If password same as userId
         if (password.equals(userId)) {
             System.out.println("Very Weak Password ❌");
             System.out.println("Hint: Password cannot be same as User ID.\n");
             return false;
         }
 
-        // 2. If length less than 8
         if (password.length() < 8) {
             System.out.println("Weak Password ❌");
             System.out.println("Hint: Try password length >= 8.\n");
             return false;
         }
 
-        // 3. If half or more of the password matches userId
         String halfPassword = password.substring(0, password.length() / 2);
         if (userId.contains(halfPassword)) {
             System.out.println("Weak Password ❌");
@@ -46,7 +41,6 @@ public class PasswordStrengthChecker {
             return false;
         }
 
-        // 4. Check strength based on complexity
         boolean hasUpper = false;
         boolean hasLower = false;
         boolean hasDigit = false;
@@ -59,7 +53,6 @@ public class PasswordStrengthChecker {
             else if ("@_!#$%^&*()-+=<>?/".contains(String.valueOf(ch))) hasSpecial = true;
         }
 
-        // Strength calculation
         int points = 0;
         if (hasUpper) points++;
         if (hasLower) points++;
@@ -81,3 +74,4 @@ public class PasswordStrengthChecker {
         }
     }
 }
+
